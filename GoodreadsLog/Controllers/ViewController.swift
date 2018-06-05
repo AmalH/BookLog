@@ -17,7 +17,7 @@ class ViewController:OAuthViewController {
     // oauth
     var oauthswift: OAuthSwift?
     // api calls
-    let adduser_apiurl = Session.Local+"/gdRdsLog/adduser.php"
+    let adduser_apiurl = "https://localhost:8888/gdRdsLog/adduser.php"
     
     // login btn
     @IBAction func goodReadsAuthActiob(_ sender: Any) {
@@ -59,7 +59,7 @@ class ViewController:OAuthViewController {
                 print("---- USER ID:\(userID)")
                
                 /** save the userID to mysql database **/
-                addUser(userID,"itsme");
+                self.addUser(id: userID, username: "itsme")
                 
         }, failure: { error in
             print(error)
@@ -115,7 +115,7 @@ class ViewController:OAuthViewController {
          "username":username
          ]
          
-         Alamofire.request(signUp_apiurl, method: .get, parameters: parameters).responseJSON
+         Alamofire.request(adduser_apiurl, method: .get, parameters: parameters).responseJSON
          {
          response  in
          print("JSON:\(response.result.value)")
@@ -130,7 +130,6 @@ class ViewController:OAuthViewController {
          
          if(val==0){
          print("fail")
-         self.didSelectSignup(self.viewController, email:email, name:name, password:password)
          //self.finish()
          }
          else if(val==1){
@@ -138,11 +137,9 @@ class ViewController:OAuthViewController {
          let alertController = UIAlertController(title: "Welcome to BooklOg", message: "you were successfully registered", preferredStyle: .alert)
          let defaultAction = UIAlertAction(title: "Go to login", style: .default, handler: nil)
          alertController.addAction(defaultAction)
-         self.didSelectLogin(self.viewController, email: email, password:password)
          }
          
          }
-         self.finish()
          }
         
         

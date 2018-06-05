@@ -13,7 +13,6 @@
 		5427BA0B207EA46900341F66 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5427BA02207EA46900341F66 /* ViewController.swift */; };
 		5427BA0D207EA46900341F66 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5427BA05207EA46900341F66 /* Images.xcassets */; };
 		64CE9C5520C69FB800B50214 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64CE9C5420C69FB800B50214 /* HomeViewController.swift */; };
-		64DF230920C6B7A000D5CA70 /* Utils in Resources */ = {isa = PBXBuildFile; fileRef = 64DF230820C6B7A000D5CA70 /* Utils */; };
 		9C761692D3F7F19292031E4F /* Pods_GoodreadsLog.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0697A083249F6731F6191494 /* Pods_GoodreadsLog.framework */; };
 		BF0DE122208566390037B92F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BF0DE120208566390037B92F /* Main.storyboard */; };
 /* End PBXBuildFile section */
@@ -29,7 +28,6 @@
 		58B505C851C3CF4D6C557E6C /* Pods-GoodreadsOauth.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GoodreadsOauth.release.xcconfig"; path = "Pods/Target Support Files/Pods-GoodreadsOauth/Pods-GoodreadsOauth.release.xcconfig"; sourceTree = "<group>"; };
 		607FACD01AFB9204008FA782 /* GoodreadsLog.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GoodreadsLog.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		64CE9C5420C69FB800B50214 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
-		64DF230820C6B7A000D5CA70 /* Utils */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Utils; path = GoodreadsLog/Utils; sourceTree = SOURCE_ROOT; };
 		70F64F7DDD98CDB9461CD238 /* Pods-GoodreadsOauth.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GoodreadsOauth.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GoodreadsOauth/Pods-GoodreadsOauth.debug.xcconfig"; sourceTree = "<group>"; };
 		98E8135D5018BE20830E5C21 /* Pods-GoodreadsLog.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GoodreadsLog.release.xcconfig"; path = "Pods/Target Support Files/Pods-GoodreadsLog/Pods-GoodreadsLog.release.xcconfig"; sourceTree = "<group>"; };
 		BF0DE121208566390037B92F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Views/Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -122,7 +120,6 @@
 		607FACD21AFB9204008FA782 /* GoodreadsLog */ = {
 			isa = PBXGroup;
 			children = (
-				64DF230820C6B7A000D5CA70 /* Utils */,
 				5427BA04207EA46900341F66 /* Assets */,
 				5427B9F6207EA46800341F66 /* Configs */,
 				5427BA01207EA46900341F66 /* Controllers */,
@@ -195,7 +192,6 @@
 			files = (
 				5427BA0D207EA46900341F66 /* Images.xcassets in Resources */,
 				5427BA08207EA46900341F66 /* LaunchScreen.xib in Resources */,
-				64DF230920C6B7A000D5CA70 /* Utils in Resources */,
 				5427BA07207EA46900341F66 /* Info.plist in Resources */,
 				BF0DE122208566390037B92F /* Main.storyboard in Resources */,
 			);
