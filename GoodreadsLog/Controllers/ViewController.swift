@@ -10,11 +10,16 @@ import UIKit
 import OAuthSwift
 import SafariServices
 import SWXMLHash
+import Alamofire
 
 class ViewController:OAuthViewController {
     
+    // oauth
     var oauthswift: OAuthSwift?
+    // api calls
+    let adduser_apiurl = Session.Local+"/gdRdsLog/adduser.php"
     
+    // login btn
     @IBAction func goodReadsAuthActiob(_ sender: Any) {
         
         /** create an instance of oauth1 **/
@@ -34,8 +39,7 @@ class ViewController:OAuthViewController {
             withCallbackURL: URL(string: "OAuthSample://oauth-callback/goodreads")!,
             success: { credential, response, parameters in
                 self.performSegue(withIdentifier: "navigateToHome", sender: self)
-                //self.showTokenAlert(name: "Oauth Credentials", credential:  credential)
-                self.testOauthGoodreads(oauthswift)
+                self.saveUserID(oauthswift)
         },
             failure: { error in
                 print( "ERROR ERROR: \(error.localizedDescription)", terminator: "")
@@ -43,7 +47,7 @@ class ViewController:OAuthViewController {
         )
     }
 
-    func testOauthGoodreads(_ oauthswift: OAuth1Swift) {
+    func saveUserID(_ oauthswift: OAuth1Swift) {
         let _ = oauthswift.client.get(
             "https://www.goodreads.com/api/auth_user",
             success: { response in
@@ -52,35 +56,31 @@ class ViewController:OAuthViewController {
                 let dataString = response.string!
                 let xml = SWXMLHash.parse(dataString)
                 let userID  =  (xml["GoodreadsResponse"]["user"].element?.attribute(by: "id")?.text)!
-                print("---- ROW:\(dataString)")
-                print("---- XML:\(xml)")
                 print("---- USER ID:\(userID)")
-                self.showAlertView(title: "ID of authorised user", message:  "user_id:\(userID). You can now use it for Goodreads API rest calls..")
-                
-                /** save the userID to .. **/
-                 // ...
+               
+                /** save the userID to mysql database **/
+                addUser(userID,"itsme");
                 
         }, failure: { error in
             print(error)
         }
         )
     }
-    
-    // token alert
-    func showTokenAlert(name: String?, credential: OAuthSwiftCredential) {
-        var message = "oauth_token:\(credential.oauthToken)"
-        if !credential.oauthTokenSecret.isEmpty {
-            message += "\n\noauth_token_secret:\(credential.oauthTokenSecret)"
-        }
-        self.showAlertView(title: name ?? "Service", message: message)
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
     }
     
-    func showAlertView(title: String, message: String) {
+    
+    
+    
+    /*----------------- UTILS ------------------*/
+    
+    /*func showAlertView(title: String, message: String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
         alert.addAction(UIAlertAction(title: "Close", style: UIAlertActionStyle.default, handler: nil))
         self.present(alert, animated: true, completion: nil)
         
-    }
+    }*/
     
     func getURLHandler() -> OAuthSwiftURLHandlerType {
         if #available(iOS 9.0, *) {
@@ -105,8 +105,49 @@ class ViewController:OAuthViewController {
         return OAuthSwiftOpenURLExternally.sharedInstance
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-       
+    
+    func addUser(id: String, username: String){
+        
+        print("from signup")
+        
+        let parameters: Parameters=[
+         "id":id,
+         "username":username
+         ]
+         
+         Alamofire.request(signUp_apiurl, method: .get, parameters: parameters).responseJSON
+         {
+         response  in
+         print("JSON:\(response.result.value)")
+         // getting the json value from the serverllo
+         if let result = response.result.value
+         {
+         let jsonData = result as! NSDictionary
+         print(jsonData)
+         
+         let val = jsonData.value(forKey: "value") as! Int64
+         print(val)
+         
+         if(val==0){
+         print("fail")
+         self.didSelectSignup(self.viewController, email:email, name:name, password:password)
+         //self.finish()
+         }
+         else if(val==1){
+         print("succes")
+         let alertController = UIAlertController(title: "Welcome to BooklOg", message: "you were successfully registered", preferredStyle: .alert)
+         let defaultAction = UIAlertAction(title: "Go to login", style: .default, handler: nil)
+         alertController.addAction(defaultAction)
+         self.didSelectLogin(self.viewController, email: email, password:password)
+         }
+         
+         }
+         self.finish()
+         }
+        
+        
     }
+    
+    
 }
 

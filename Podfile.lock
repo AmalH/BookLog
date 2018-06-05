@@ -1,20 +1,24 @@
 PODS:
+  - Alamofire (4.7.2)
   - OAuthSwift (1.2.0)
   - SWXMLHash (4.0.0)
 
 DEPENDENCIES:
+  - Alamofire
   - OAuthSwift (~> 1.2.0)
   - SWXMLHash (~> 4.0.0)
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
+    - Alamofire
     - OAuthSwift
     - SWXMLHash
 
 SPEC CHECKSUMS:
+  Alamofire: e4fa87002c137ba2d8d634d2c51fabcda0d5c223
   OAuthSwift: 7fd6855b8e4d58eb5a30d156ea9bed7a8aecd1ca
   SWXMLHash: 6bbc0bf72975a18ceda469fb7d6a886a26d81694
 
-PODFILE CHECKSUM: 86ba5e62706d239156e6e9440aa8fd062abb824c
+PODFILE CHECKSUM: d7fc737d6fdc4374b62fa02de34ee5e03d3c3b7d
 
 COCOAPODS: 1.5.0
