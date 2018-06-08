@@ -22,7 +22,9 @@ class MainViewController:OAuthViewController {
     // login btn
     @IBAction func goodReadsAuthActiob(_ sender: Any) {
         
-        /** create an instance of oauth1 **/
+          self.performSegue(withIdentifier: "navigateToHome", sender: self)
+        
+        /** create an instance of oauth1
         let oauthswift = OAuth1Swift(
             consumerKey:        "DoCJiny85pQMBpNxiWUEg",
             consumerSecret:     "iRSv76VCZekmBIf8lAx6FMccL6vJkiU8SV5j8BaXE",
@@ -34,7 +36,7 @@ class MainViewController:OAuthViewController {
         oauthswift.allowMissingOAuthVerifier = true
         oauthswift.authorizeURLHandler = getURLHandler()
         
-        /** authorize **/
+        // authorize
         let _ = oauthswift.authorize(
             withCallbackURL: URL(string: "Goodreadslog://oauth-callback/goodreads")!,
             success: { credential, response, parameters in
@@ -44,7 +46,7 @@ class MainViewController:OAuthViewController {
             failure: { error in
                 print( "ERROR ERROR: \(error.localizedDescription)", terminator: "")
         }
-        )
+        )*/
     }
     
     func saveUserID(_ oauthswift: OAuth1Swift) {

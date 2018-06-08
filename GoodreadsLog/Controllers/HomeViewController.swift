@@ -55,7 +55,7 @@ class HomeViewController: UIViewController {
     
     @IBAction func readingBtnAction(_ sender: Any) {
         self.shelfSelected = "reading"
-        self.performSegue(withIdentifier: "navigateToHome", sender: self)
+        self.performSegue(withIdentifier: "navigateToList", sender: self)
     }
     
 }
