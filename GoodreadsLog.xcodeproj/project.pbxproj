@@ -10,8 +10,10 @@
 		5427BA06207EA46900341F66 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5427B9F7207EA46800341F66 /* AppDelegate.swift */; };
 		5427BA07207EA46900341F66 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5427B9F8207EA46800341F66 /* Info.plist */; };
 		5427BA08207EA46900341F66 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5427B9FB207EA46800341F66 /* LaunchScreen.xib */; };
-		5427BA0B207EA46900341F66 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5427BA02207EA46900341F66 /* ViewController.swift */; };
+		5427BA0B207EA46900341F66 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5427BA02207EA46900341F66 /* MainViewController.swift */; };
 		5427BA0D207EA46900341F66 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5427BA05207EA46900341F66 /* Images.xcassets */; };
+		6492749620CA9BE6003DDE2F /* ShelfViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6492749520CA9BE6003DDE2F /* ShelfViewController.swift */; };
+		6492749B20CAAE53003DDE2F /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6492749A20CAAE53003DDE2F /* Book.swift */; };
 		64CE9C5520C69FB800B50214 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64CE9C5420C69FB800B50214 /* HomeViewController.swift */; };
 		9C761692D3F7F19292031E4F /* Pods_GoodreadsLog.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0697A083249F6731F6191494 /* Pods_GoodreadsLog.framework */; };
 		BF0DE122208566390037B92F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BF0DE120208566390037B92F /* Main.storyboard */; };
@@ -23,10 +25,12 @@
 		5427B9F7207EA46800341F66 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5427B9F8207EA46800341F66 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5427B9FC207EA46800341F66 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		5427BA02207EA46900341F66 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		5427BA02207EA46900341F66 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		5427BA05207EA46900341F66 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		58B505C851C3CF4D6C557E6C /* Pods-GoodreadsOauth.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GoodreadsOauth.release.xcconfig"; path = "Pods/Target Support Files/Pods-GoodreadsOauth/Pods-GoodreadsOauth.release.xcconfig"; sourceTree = "<group>"; };
 		607FACD01AFB9204008FA782 /* GoodreadsLog.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GoodreadsLog.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		6492749520CA9BE6003DDE2F /* ShelfViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShelfViewController.swift; sourceTree = "<group>"; };
+		6492749A20CAAE53003DDE2F /* Book.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Book.swift; sourceTree = "<group>"; };
 		64CE9C5420C69FB800B50214 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		70F64F7DDD98CDB9461CD238 /* Pods-GoodreadsOauth.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GoodreadsOauth.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GoodreadsOauth/Pods-GoodreadsOauth.debug.xcconfig"; sourceTree = "<group>"; };
 		98E8135D5018BE20830E5C21 /* Pods-GoodreadsLog.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GoodreadsLog.release.xcconfig"; path = "Pods/Target Support Files/Pods-GoodreadsLog/Pods-GoodreadsLog.release.xcconfig"; sourceTree = "<group>"; };
@@ -85,8 +89,9 @@
 		5427BA01207EA46900341F66 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				5427BA02207EA46900341F66 /* ViewController.swift */,
+				5427BA02207EA46900341F66 /* MainViewController.swift */,
 				64CE9C5420C69FB800B50214 /* HomeViewController.swift */,
+				6492749520CA9BE6003DDE2F /* ShelfViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -120,12 +125,21 @@
 		607FACD21AFB9204008FA782 /* GoodreadsLog */ = {
 			isa = PBXGroup;
 			children = (
+				6492749920CAAE0F003DDE2F /* Models */,
 				5427BA04207EA46900341F66 /* Assets */,
 				5427B9F6207EA46800341F66 /* Configs */,
 				5427BA01207EA46900341F66 /* Controllers */,
 				5427B9FA207EA46800341F66 /* Views */,
 			);
 			path = GoodreadsLog;
+			sourceTree = "<group>";
+		};
+		6492749920CAAE0F003DDE2F /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				6492749A20CAAE53003DDE2F /* Book.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -247,8 +261,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5427BA0B207EA46900341F66 /* ViewController.swift in Sources */,
+				5427BA0B207EA46900341F66 /* MainViewController.swift in Sources */,
 				5427BA06207EA46900341F66 /* AppDelegate.swift in Sources */,
+				6492749620CA9BE6003DDE2F /* ShelfViewController.swift in Sources */,
+				6492749B20CAAE53003DDE2F /* Book.swift in Sources */,
 				64CE9C5520C69FB800B50214 /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

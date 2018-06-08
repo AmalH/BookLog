@@ -12,20 +12,20 @@ import SafariServices
 import SWXMLHash
 import Alamofire
 
-class ViewController:OAuthViewController {
+class MainViewController:OAuthViewController {
     
     // oauth
     var oauthswift: OAuthSwift?
     // api calls
-    let adduser_apiurl = "https://localhost:8888/gdRdsLog/adduser.php"
+    let adduser_apiurl = "http://localhost:8888/gdRdsLog/adduser.php"
     
     // login btn
     @IBAction func goodReadsAuthActiob(_ sender: Any) {
         
         /** create an instance of oauth1 **/
         let oauthswift = OAuth1Swift(
-            consumerKey:        "ByJPtxvVIlsWKlizEBbQ",
-            consumerSecret:     "DizrvZRKwSyCz6B5NA8NEItcKwtuzTASGnvaXNxLVTs",
+            consumerKey:        "DoCJiny85pQMBpNxiWUEg",
+            consumerSecret:     "iRSv76VCZekmBIf8lAx6FMccL6vJkiU8SV5j8BaXE",
             requestTokenUrl:    "https://www.goodreads.com/oauth/request_token",
             authorizeUrl:       "https://www.goodreads.com/oauth/authorize?mobile=1",
             accessTokenUrl:     "https://www.goodreads.com/oauth/access_token"
@@ -36,7 +36,7 @@ class ViewController:OAuthViewController {
         
         /** authorize **/
         let _ = oauthswift.authorize(
-            withCallbackURL: URL(string: "OAuthSample://oauth-callback/goodreads")!,
+            withCallbackURL: URL(string: "Goodreadslog://oauth-callback/goodreads")!,
             success: { credential, response, parameters in
                 self.performSegue(withIdentifier: "navigateToHome", sender: self)
                 self.saveUserID(oauthswift)
@@ -56,6 +56,7 @@ class ViewController:OAuthViewController {
                 let dataString = response.string!
                 let xml = SWXMLHash.parse(dataString)
                 let userID  =  (xml["GoodreadsResponse"]["user"].element?.attribute(by: "id")?.text)!
+                print("---- XML:\(userID)")
                 print("---- USER ID:\(userID)")
                
                 /** save the userID to mysql database **/
@@ -108,8 +109,6 @@ class ViewController:OAuthViewController {
     
     func addUser(id: String, username: String){
         
-        print("from signup")
-        
         let parameters: Parameters=[
          "id":id,
          "username":username
@@ -118,7 +117,7 @@ class ViewController:OAuthViewController {
          Alamofire.request(adduser_apiurl, method: .get, parameters: parameters).responseJSON
          {
          response  in
-         print("JSON:\(response.result.value)")
+         print("JSON:\(response.value)")
          // getting the json value from the serverllo
          if let result = response.result.value
          {
@@ -129,16 +128,11 @@ class ViewController:OAuthViewController {
          print(val)
          
          if(val==0){
-         print("fail")
-         //self.finish()
+         print("failure")
          }
          else if(val==1){
          print("succes")
-         let alertController = UIAlertController(title: "Welcome to BooklOg", message: "you were successfully registered", preferredStyle: .alert)
-         let defaultAction = UIAlertAction(title: "Go to login", style: .default, handler: nil)
-         alertController.addAction(defaultAction)
          }
-         
          }
          }
         
@@ -147,4 +141,5 @@ class ViewController:OAuthViewController {
     
     
 }
+
 
