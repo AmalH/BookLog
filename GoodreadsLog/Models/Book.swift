@@ -15,6 +15,14 @@ class Book {
     var coverSrc: String
     var status: String
     
+    func authorName() -> String {
+        return author
+    }
+    
+    func bookTitle() -> String {
+        return title
+    }
+    
     init(title: String, author: String, coverSrc: String, status:String) {
         self.title = title
         self.author = author

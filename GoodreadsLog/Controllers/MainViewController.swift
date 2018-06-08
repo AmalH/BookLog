@@ -46,7 +46,7 @@ class MainViewController:OAuthViewController {
         }
         )
     }
-
+    
     func saveUserID(_ oauthswift: OAuth1Swift) {
         let _ = oauthswift.client.get(
             "https://www.goodreads.com/api/auth_user",
@@ -58,7 +58,7 @@ class MainViewController:OAuthViewController {
                 let userID  =  (xml["GoodreadsResponse"]["user"].element?.attribute(by: "id")?.text)!
                 print("---- XML:\(userID)")
                 print("---- USER ID:\(userID)")
-               
+                
                 /** save the userID to mysql database **/
                 self.addUser(id: userID, username: "itsme")
                 
@@ -77,21 +77,21 @@ class MainViewController:OAuthViewController {
     /*----------------- UTILS ------------------*/
     
     /*func showAlertView(title: String, message: String) {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
-        alert.addAction(UIAlertAction(title: "Close", style: UIAlertActionStyle.default, handler: nil))
-        self.present(alert, animated: true, completion: nil)
-        
-    }*/
+     let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
+     alert.addAction(UIAlertAction(title: "Close", style: UIAlertActionStyle.default, handler: nil))
+     self.present(alert, animated: true, completion: nil)
+     
+     }*/
     
     func getURLHandler() -> OAuthSwiftURLHandlerType {
         if #available(iOS 9.0, *) {
             let handler = SafariURLHandler(viewController: self, oauthSwift: self.oauthswift!)
-           /* handler.presentCompletion = {
-                print("Safari presented")
-            }
-            handler.dismissCompletion = {
-                print("Safari dismissed")
-            }*/
+            /* handler.presentCompletion = {
+             print("Safari presented")
+             }
+             handler.dismissCompletion = {
+             print("Safari dismissed")
+             }*/
             handler.factory = { url in
                 let controller = SFSafariViewController(url: url)
                 // Customize it, for instance
@@ -110,31 +110,31 @@ class MainViewController:OAuthViewController {
     func addUser(id: String, username: String){
         
         let parameters: Parameters=[
-         "id":id,
-         "username":username
-         ]
-         
-         Alamofire.request(adduser_apiurl, method: .get, parameters: parameters).responseJSON
-         {
-         response  in
-         print("JSON:\(response.value)")
-         // getting the json value from the serverllo
-         if let result = response.result.value
-         {
-         let jsonData = result as! NSDictionary
-         print(jsonData)
-         
-         let val = jsonData.value(forKey: "value") as! Int64
-         print(val)
-         
-         if(val==0){
-         print("failure")
-         }
-         else if(val==1){
-         print("succes")
-         }
-         }
-         }
+            "id":id,
+            "username":username
+        ]
+        
+        Alamofire.request(adduser_apiurl, method: .get, parameters: parameters).responseJSON
+            {
+                response  in
+                print("JSON:\(response.value)")
+                // getting the json value from the serverllo
+                if let result = response.result.value
+                {
+                    let jsonData = result as! NSDictionary
+                    print(jsonData)
+                    
+                    let val = jsonData.value(forKey: "value") as! Int64
+                    print(val)
+                    
+                    if(val==0){
+                        print("failure")
+                    }
+                    else if(val==1){
+                        print("succes")
+                    }
+                }
+        }
         
         
     }

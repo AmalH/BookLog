@@ -13,7 +13,8 @@ class ShelfViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     @IBOutlet weak var tableView: UITableView!
     
-    var booksArray = ["book 1","book 2","book 3"]
+    var testBook = Book.init(title:"book 0", author: "author 0", coverSrc: "", status: "read")
+    var booksArray = ["","",""]
     var selectedBook = ""
     
     override func viewDidLoad() {
@@ -39,8 +40,10 @@ class ShelfViewController: UIViewController, UITableViewDelegate, UITableViewDat
         let bookAuthor = cell?.viewWithTag(2) as? UILabel
         let bookStatus = cell?.viewWithTag(3) as? UILabel
         
+        bookAuthor?.text = booksArray[indexPath.row]
         bookTitle?.text = booksArray[indexPath.row]
-       // bookCover?.image = UIImage(named: moviesArray[indexPath.row])
+        //testBook.authorName()
+        // bookCover?.image = UIImage(named: moviesArray[indexPath.row])
         
         return cell!
     }
@@ -52,17 +55,17 @@ class ShelfViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         /*if segue.identifier == "toDetails"{
-            if let destinationVC = segue.destination as? DetailViewController {
-                destinationVC.movieName = selectedMovie
-            }
-        }*/
+         if let destinationVC = segue.destination as? DetailViewController {
+         destinationVC.movieName = selectedMovie
+         }
+         }*/
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-       /* if editingStyle == .delete{
-            moviesArray.remove(at: indexPath.row)
-            tableView.reloadData()
-        }*/
+        /* if editingStyle == .delete{
+         moviesArray.remove(at: indexPath.row)
+         tableView.reloadData()
+         }*/
     }
     
     
