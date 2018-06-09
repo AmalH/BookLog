@@ -12,7 +12,7 @@ import SafariServices
 import SWXMLHash
 import Alamofire
 
-class MainViewController:OAuthViewController {
+class MainViewController: UIViewController {
     
     // oauth
     var oauthswift: OAuthSwift?
